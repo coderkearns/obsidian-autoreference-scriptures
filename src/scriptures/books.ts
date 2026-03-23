@@ -24,6 +24,15 @@ export interface ScriptureBook {
 	 * (e.g. `"chapter-"` turns chapter `1` into the path segment `chapter-1`).
 	 */
 	chapterPrefix?: string;
+	/**
+	 * Optional map from a normalized section key to the URL path segment
+	 * appended after `urlBase`. When present, the URL builder resolves the
+	 * chapter via this map instead of the default `chapterPrefix + chapter`
+	 * construction.  Keys use the canonical forms returned by
+	 * `normalizePmgSection` (e.g. `"message"`, `"intro"`, `"1"`, `"3.1"`,
+	 * `"3.2"`, …).
+	 */
+	chapterMap?: Record<string, string>;
 }
 
 export const SCRIPTURE_BOOKS: ScriptureBook[] = [
@@ -136,9 +145,29 @@ export const SCRIPTURE_BOOKS: ScriptureBook[] = [
 	{
 		names: ['Preach My Gospel', 'PMG'],
 		volume: 'manual',
-		slug: 'preach-my-gospel-a-guide-to-sharing-the-gospel-of-jesus-christ',
-		urlBase:
-			'https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-a-guide-to-sharing-the-gospel-of-jesus-christ',
-		chapterPrefix: 'chapter-',
+		slug: 'preach-my-gospel-2023',
+		urlBase: 'https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-2023',
+		chapterMap: {
+			'message': '01-first-presidency-message',
+			'intro':   '02-intro',
+			'1':       '03-chapter-1',
+			'2':       '04-chapter-2',
+			'3.1':     '04-chapter-3/06-chapter-3-intro',
+			'3.2':     '04-chapter-3/07-chapter-3-invite',
+			'3.3':     '04-chapter-3/08-chapter-3-lesson-1',
+			'3.4':     '04-chapter-3/09-chapter-3-lesson-2',
+			'3.5':     '04-chapter-3/10-chapter-3-lesson-3',
+			'3.6':     '04-chapter-3/11-chapter-3-lesson-4',
+			'4':       '12-chapter-4',
+			'5':       '13-chapter-5',
+			'6':       '14-chapter-6',
+			'7':       '15-chapter-7',
+			'8':       '16-chapter-8',
+			'9':       '17-chapter-9',
+			'10':      '18-chapter-10',
+			'11':      '19-chapter-11',
+			'12':      '20-chapter-12',
+			'13':      '21-chapter-13',
+		},
 	},
 ];

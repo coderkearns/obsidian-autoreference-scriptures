@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-autoreference-scriptures",
 	"name": "Autoreference Scriptures",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"minAppVersion": "0.15.0",
 	"description": "Automatically detects scripture references and hyperlinks them to the ChurchOfJesusChrist.org study library.",
 	"author": "coderkearns",

@@ -29,7 +29,7 @@ When you open a note in Reading View, the plugin scans all rendered text and wra
 | `1 Ne. 3:7` | `…/bofm/1-ne/3?lang=eng&id=p7#p7` |
 | `D&C 76:22-24` | `…/dc-testament/dc/76?lang=eng&id=p22-p24#p22` |
 | `Alma 32:21` | `…/bofm/alma/32?lang=eng&id=p21#p21` |
-| `PMG page 1` | `…/preach-my-gospel…/chapter-1?lang=eng` |
+| `PMG 1` | `…/preach-my-gospel…/chapter-1?lang=eng` |
 
 ## Installation
 

@@ -5,5 +5,6 @@
 	"minAppVersion": "0.15.0",
 	"description": "Automatically detects scripture references and hyperlinks them to the ChurchOfJesusChrist.org study library.",
 	"author": "coderkearns",
+	"authorUrl": "https://github.com/coderkearns",
 	"isDesktopOnly": false
 }

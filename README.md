@@ -1,90 +1,69 @@
-# Obsidian Sample Plugin
+# Autoreference Scriptures
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+An [Obsidian](https://obsidian.md) plugin that automatically detects scripture references in your notes and turns them into hyperlinks to the [ChurchOfJesusChrist.org](https://www.churchofjesuschrist.org) study library — no configuration required.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Automatic detection** – works in Reading View without any manual action
+- **Full and abbreviated forms** – recognizes full names and common abbreviations (e.g. `Gen.`, `1 Ne.`, `D&C`)
+- **Verse ranges and lists** – supports `John 3:16`, `Alma 32:21-43`, and `Matthew 5:3,5,7`
+- **Skips code blocks** – references inside inline code or fenced code blocks are left unchanged
+- **Supported volumes**:
+  - Old Testament
+  - New Testament
+  - Book of Mormon
+  - Doctrine & Covenants
+  - Pearl of Great Price
+  - Preach My Gospel (page references via `PMG page 18` or `PMG #18`)
 
-## First time developing plugins?
+## How it works
 
-Quick starting guide for new plugin devs:
+When you open a note in Reading View, the plugin scans all rendered text and wraps any detected scripture reference in a clickable link that opens the corresponding chapter or verse on ChurchOfJesusChrist.org in a new tab.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Examples
 
-## Releasing new releases
+| Note text | Destination |
+|-----------|-------------|
+| `John 3:16` | `…/nt/john/3?lang=eng&id=p16#p16` |
+| `Gen. 1:1` | `…/ot/gen/1?lang=eng&id=p1#p1` |
+| `1 Ne. 3:7` | `…/bofm/1-ne/3?lang=eng&id=p7#p7` |
+| `D&C 76:22-24` | `…/dc-testament/dc/76?lang=eng&id=p22-p24#p22` |
+| `Alma 32:21` | `…/bofm/alma/32?lang=eng&id=p21#p21` |
+| `PMG page 1` | `…/preach-my-gospel…/chapter-1?lang=eng` |
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+## Installation
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### Via Obsidian Community Plugins *(coming soon)*
 
-## Adding your plugin to the community plugin list
+1. Open **Settings → Community Plugins** and disable Safe Mode if prompted.
+2. Click **Browse**, search for **Autoreference Scriptures**, and install it.
+3. Enable the plugin.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+### Manual installation
 
-## How to use
+1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/coderkearns/obsidian-autoreference-scriptures/releases/latest).
+2. Copy those files into your vault at:
+   ```
+   <vault>/.obsidian/plugins/obsidian-autoreference-scriptures/
+   ```
+3. Enable the plugin in **Settings → Community Plugins**.
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## Development
 
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+```bash
+npm install       # install dependencies
+npm run dev       # watch mode — rebuilds automatically on save
+npm run build     # type-check + production bundle
+npm run lint      # run ESLint
 ```
 
-If you have multiple URLs, you can also do:
+## Releasing a new version
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+1. Update `minAppVersion` in `manifest.json` if you are using newer Obsidian APIs.
+2. Run `npm version patch` (or `minor` / `major`) — this bumps the version in `manifest.json`, `package.json`, and `versions.json` automatically.
+3. Create a GitHub release using the version number as the tag (no `v` prefix).
+4. Attach `main.js` and `manifest.json` as binary assets.
 
-## API Documentation
+## License
 
-See https://docs.obsidian.md
+[ISC](LICENSE) © coderkearns

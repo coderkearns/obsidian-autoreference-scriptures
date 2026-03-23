@@ -13,6 +13,17 @@ export interface ScriptureBook {
 	volume: string;
 	/** Book path segment used in ChurchOfJesusChrist.org study URLs. */
 	slug: string;
+	/**
+	 * Optional override for the base URL up to (but not including) the
+	 * chapter segment. When present, replaces the default
+	 * `BASE_URL/volume/slug` construction in the URL builder.
+	 */
+	urlBase?: string;
+	/**
+	 * Optional prefix inserted before the chapter number in the URL
+	 * (e.g. `"chapter-"` turns chapter `1` into the path segment `chapter-1`).
+	 */
+	chapterPrefix?: string;
 }
 
 export const SCRIPTURE_BOOKS: ScriptureBook[] = [
@@ -118,4 +129,16 @@ export const SCRIPTURE_BOOKS: ScriptureBook[] = [
 	{ names: ['Joseph Smith—Matthew', 'JS—M', 'JS-M'], volume: 'pgp', slug: 'js-m' },
 	{ names: ['Joseph Smith—History', 'JS—H', 'JS-H'], volume: 'pgp', slug: 'js-h' },
 	{ names: ['Articles of Faith', 'A of F'], volume: 'pgp', slug: 'a-of-f' },
+
+	// ── Preach My Gospel ───────────────────────────────────────────────────────
+	// List "Preach My Gospel" before the shorter alias "PMG" so the longer form
+	// is tried first in the regex alternation.
+	{
+		names: ['Preach My Gospel', 'PMG'],
+		volume: 'manual',
+		slug: 'preach-my-gospel-a-guide-to-sharing-the-gospel-of-jesus-christ',
+		urlBase:
+			'https://www.churchofjesuschrist.org/study/manual/preach-my-gospel-a-guide-to-sharing-the-gospel-of-jesus-christ',
+		chapterPrefix: 'chapter-',
+	},
 ];

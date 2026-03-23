@@ -59,8 +59,13 @@ export const SCRIPTURE_REGEX: RegExp = (() => {
 	// hyphen-separated additional digit groups (e.g. "1", "2-4", "9,11").
 	const versePart = String.raw`\d+(?:[-,]\d+)*`;
 
+	// After the book name, optionally allow "page N", "pg. N", or "#N"
+	// in addition to the bare "N" used by standard scripture references.
+	// This supports formats like "PMG page 18", "PMG pg. 18", "PMG #18".
+	const numberPrefix = String.raw`(?:(?:page|pg\.)\s+|#\s*)?`;
+
 	return new RegExp(
-		String.raw`\b(${bookAlt})\s+(\d+)(?::(${versePart}))?`,
+		String.raw`\b(${bookAlt})\s+${numberPrefix}(\d+)(?::(${versePart}))?`,
 		'gi',
 	);
 })();

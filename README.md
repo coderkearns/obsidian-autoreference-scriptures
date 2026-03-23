@@ -41,7 +41,7 @@ When you open a note in Reading View, the plugin scans all rendered text and wra
 
 ### Manual installation
 
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/coderkearns/obsidian-autoreference-scriptures/releases/latest).
+1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/coderkearns/obsidian-autoreference-scriptures/releases/latest).
 2. Copy those files into your vault at:
    ```
    <vault>/.obsidian/plugins/obsidian-autoreference-scriptures/
@@ -62,7 +62,7 @@ npm run lint      # run ESLint
 1. Update `minAppVersion` in `manifest.json` if you are using newer Obsidian APIs.
 2. Run `npm version patch` (or `minor` / `major`) — this bumps the version in `manifest.json`, `package.json`, and `versions.json` automatically.
 3. Create a GitHub release using the version number as the tag (no `v` prefix).
-4. Attach `main.js`, `manifest.json`, and `styles.css` as binary assets.
+4. Attach `main.js` and `manifest.json` as binary assets.
 
 ## License
 

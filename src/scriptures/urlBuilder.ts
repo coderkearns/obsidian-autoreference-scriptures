@@ -41,7 +41,9 @@ export function buildUrl(
 	chapter: string,
 	verses: string | undefined,
 ): string {
-	const chapterUrl = `${BASE_URL}/${book.volume}/${book.slug}/${chapter}?lang=eng`;
+	const base = book.urlBase ?? `${BASE_URL}/${book.volume}/${book.slug}`;
+	const chapterSegment = `${book.chapterPrefix ?? ''}${chapter}`;
+	const chapterUrl = `${base}/${chapterSegment}?lang=eng`;
 
 	if (!verses) {
 		return chapterUrl;
